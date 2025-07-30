@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin id="cordova-plugin-mock-location-check" version="1.0.0" xmlns="http://apache.org/ns/plugins" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>MockLocationCheck</name>
-    <description>Check if mock location is enabled and which app is using it.</description>
+    <description>Check if mock location is enabled.</description>
     <license>Apache 2.0</license>
-    <keywords>cordova, mock location, android, location</keywords>
-    <repository>https://github.com/your-github-repo</repository>
+    <keywords>cordova, mock location, android</keywords>
     
     <platform name="android">
         <source-file src="src/android/MockLocationCheck.java" target-dir="src/cordova/plugin/mocklocationcheck" />

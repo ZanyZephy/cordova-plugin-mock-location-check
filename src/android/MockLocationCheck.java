@@ -17,11 +17,8 @@ public class MockLocationCheck extends CordovaPlugin {
             boolean isEnabled = isMockLocationEnabled(cordova.getContext());
             callbackContext.success(isEnabled ? "true" : "false");
             return true;
-        } else if (action.equals("getMockLocationApp")) {
-            String app = getMockLocationApp(cordova.getContext());
-            callbackContext.success(app != null ? app : "No app found");
-            return true;
         }
+        // 删除获取模拟位置应用的方法
         return false;
     }
 
@@ -36,11 +33,5 @@ public class MockLocationCheck extends CordovaPlugin {
             return !"0".equals(Settings.Secure.getString(context.getContentResolver(),
                     Settings.Secure.ALLOW_MOCK_LOCATION));
         }
-    }
-
-    // 获取当前使用的模拟位置应用
-    public String getMockLocationApp(Context context) {
-        return Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.MOCK_LOCATION_APP);
     }
 }
