@@ -1,0 +1,10 @@
+{
+  "name": "cordova-plugin-mock-location-check",
+  "version": "1.0.0",
+  "cordova": {
+    "id": "cordova-plugin-mock-location-check",
+    "platforms": [
+      "android"
+    ]
+  }
+}
