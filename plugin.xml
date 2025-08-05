@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin id="cordova-plugin-mock-location-check" version="1.0.0" xmlns="http://apache.org/ns/plugins" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>MockLocationCheck</name>
-    <description>Check if mock location is enabled.</description>
-    <license>Apache 2.0</license>
-    <keywords>cordova, mock location, android</keywords>
-    
-    <platform name="android">
-        <source-file src="src/android/MockLocationCheck.java" target-dir="src/cordova/plugin/mocklocationcheck" />
-    </platform>
-    
-    <js-module src="www/MockLocationCheck.js" name="MockLocationCheck">
-        <clobbers target="MockLocationCheck" />
+<?xml version='1.0' encoding='utf-8' ?>
+<plugin id="cn.one.pdd.plugin" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>SystemCheckMockLocationPlugin</name>
+    <js-module name="SystemCheckMockLocationPlugin" src="www/SystemCheckMockLocationPlugin.js">
+        <clobbers target="cordova.plugins.SystemCheckMockLocationPlugin" />
     </js-module>
-    
-    <engines>
-        <engine name="cordova" version=">=9.0.0" />
-    </engines>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="SystemCheckMockLocationPlugin">
+                <param name="android-package" value="cn.one.pdd.plugin.SystemCheckMockLocationPlugin" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml" />
+        <source-file src="src/android/SystemCheckMockLocationPlugin.java" target-dir="src/cn/one/pdd/plugin/" />
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+    </platform>
 </plugin>

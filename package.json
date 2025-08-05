@@ -1,10 +1,15 @@
 {
-  "name": "cordova-plugin-mock-location-check",
-  "version": "1.0.0",
+  "name": "cn.one.pdd.plugin",
+  "version": "0.0.1",
+  "description": "Mock Location System Check",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "cordova": {
-    "id": "cordova-plugin-mock-location-check",
-    "platforms": [
-      "android"
-    ]
-  }
+    "id": "cn.one.pdd.plugin",
+    "platforms": ["android"]
+  },
+  "author": "",
+  "license": "ISC"
 }
