@@ -26,9 +26,7 @@
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
 
-        <application
-                android:requestLegacyExternalStorage="true"
-        </application>
+        <application android:requestLegacyExternalStorage="true"></application>
     </platform>
     <!-- iOS平台实现 -->
     <platform name="ios">
