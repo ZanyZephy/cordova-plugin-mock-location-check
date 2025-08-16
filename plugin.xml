@@ -4,29 +4,24 @@
     <js-module name="SystemCheckMockLocationPlugin" src="www/SystemCheckMockLocationPlugin.js">
         <clobbers target="cordova.plugins.SystemCheckMockLocationPlugin" />
     </js-module>
-    <js-module name="IOSUUID" src="www/IOSUUID.js">
-        <clobbers target="window.plugins.iosuuid" />
-    </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="SystemCheckMockLocationPlugin">
                 <param name="android-package" value="cn.one.pdd.plugin.SystemCheckMockLocationPlugin" />
             </feature>
         </config-file>
-        <config-file parent="/*" target="AndroidManifest.xml" />
         <source-file src="src/android/SystemCheckMockLocationPlugin.java" target-dir="src/cn/one/pdd/plugin/" />
         <config-file parent="/*" target="AndroidManifest.xml">
+
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
         </config-file>
         <!-- 其他配置 -->
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
-
-        <application android:requestLegacyExternalStorage="true"></application>
+        <application android:requestLegacyExternalStorage="true">
+        </application>
     </platform>
     <!-- iOS平台实现 -->
     <platform name="ios">
