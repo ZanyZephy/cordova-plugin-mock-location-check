@@ -39,6 +39,10 @@ public class SystemCheckMockLocationPlugin extends CordovaPlugin {
             //this.isMockLocationEnabled(callbackContext);
             return true;
         }
+        else if (action.equals("getDeviceId")) {
+            this.getAndroidId(callbackContext);
+            return true;
+        }
         else if (action.equals("getUUID")) {
             this.getUUID(callbackContext);
             return true;
@@ -65,12 +69,118 @@ public class SystemCheckMockLocationPlugin extends CordovaPlugin {
         }
     }
 
+//    public void isMockLocationEnabled(CallbackContext callbackContext) {
+//        Context context = cordova.getActivity().getApplicationContext();
+//
+//        try {
+//            boolean mHasAddTestProvider = false;
+//            // 1. 检查全局开关是否开启
+//            boolean mCanMockPosition =
+//                    (Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION, 0) != 0)
+//                            || Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+//            if (mCanMockPosition) {
+//                try {
+//                    LocationManager mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+//                    // gps 提供
+//                    String providerStr = LocationManager.GPS_PROVIDER;
+//                    // 位置提供者
+//                    LocationProvider provider = mLocationManager.getProvider(providerStr);
+//                    String mProviderName = providerStr;
+//                    if (null != provider) {
+//                        mProviderName = provider.getName();
+//                        // 添加测试位置提供
+//                        mLocationManager.addTestProvider(
+//                                mProviderName,
+//                                provider.requiresNetwork(),
+//                                provider.requiresSatellite(),
+//                                provider.requiresCell(),
+//                                provider.hasMonetaryCost(),
+//                                provider.supportsAltitude(),
+//                                provider.supportsSpeed(),
+//                                provider.supportsBearing(),
+//                                provider.getPowerRequirement(),
+//                                provider.getAccuracy()
+//                        );
+//                    }
+//                    else {
+//                        mLocationManager.addTestProvider(
+//                                providerStr,
+//                                true,
+//                                true,
+//                                false,
+//                                false,
+//                                true,
+//                                true,
+//                                true,
+//                                3,
+//                                1
+//                        );
+//                    }
+//
+//                    // 设置测试提供可用
+//                    mLocationManager.setTestProviderEnabled(mProviderName, true);
+//                    // 设置测试提供状态
+//                    mLocationManager.setTestProviderStatus(
+//                            mProviderName,
+//                            LocationProvider.AVAILABLE,
+//                            null,
+//                            System.currentTimeMillis()
+//                    );
+//                    // 模拟位置可用
+//                    mHasAddTestProvider = true;
+//                    mCanMockPosition = true;
+//                    //释放资源
+//                    mLocationManager.setTestProviderEnabled(
+//                            mProviderName,
+//                            false
+//                    );
+//                    mLocationManager.removeTestProvider(mProviderName);
+//                } catch (Exception e) {
+//                    mCanMockPosition = false;
+//                }
+//            }
+//            int isEnabled = (mCanMockPosition && mHasAddTestProvider) ? 1 : 0;
+//
+//            JSONObject result = new JSONObject();
+//            result.put("enabled", isEnabled);
+//            callbackContext.success(result);
+//        } catch (Exception e) {
+//            callbackContext.error("Error checking mock location: " + e.getMessage());
+//        }
+//    }
+
 
     private static final String TAG = "DeviceIdManager";
     private static final String PREFS_NAME = "device_identifier";
     private static final String PREFS_DEVICE_ID = "device_id";
     private static final String EXTERNAL_STORAGE_FILE = ".device_id.abc";
     private static String deviceId;
+    private static String androidId;
+
+
+    public void getAndroidId(CallbackContext callbackContext) {
+        androidId = getAndroidId();
+
+        // 构造 JSONObject 传递结果
+        JSONObject result = new JSONObject();
+        try {
+            result.put("data", androidId);
+            callbackContext.success(result);
+        } catch (JSONException e) {
+            callbackContext.error("构造返回数据失败：" + e.getMessage());
+        }
+    }
+    public String getAndroidId() {
+        Context context = cordova.getActivity().getApplicationContext();
+        String id = Settings.Secure.getString(context.getContentResolver(), "android_id");
+        if ("9774d56d682e549c".equals(id)) {
+            androidId = "";
+        } else {
+            androidId = id == null ? "" : id;
+        }
+        return androidId;
+    }
+
 
 
     /**
