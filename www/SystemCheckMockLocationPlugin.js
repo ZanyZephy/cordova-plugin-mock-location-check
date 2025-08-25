@@ -6,7 +6,6 @@ exports.isDeveloperModeEnabled = function (success, error) {
 };
 
 exports.getUUID = function (success, error) {
-    // exec(success, error, 'SystemCheckMockLocationPlugin', 'getUUID', []);
-    var serviceName = device.platform === 'iOS' ? 'SystemCheckMockLocationPlugin' : 'SystemCheckMockLocationPlugin';
+    var serviceName = device.platform === 'iOS' ? 'IOSUUID' : 'SystemCheckMockLocationPlugin';
     exec(success, error, serviceName, 'getUUID', []);
 };
