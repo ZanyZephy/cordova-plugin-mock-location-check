@@ -1,6 +1,6 @@
 {
   "name": "cn.one.pdd.plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PDD System Check",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,6 @@
     "id": "cn.one.pdd.plugin",
     "platforms": ["android", "ios"]
   },
-  "author": "cg",
+  "author": "cgd",
   "license": "ISC"
 }

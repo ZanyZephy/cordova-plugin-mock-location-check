@@ -1,34 +1,40 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<plugin id="cn.one.pdd.plugin" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cn.one.pdd.plugin" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>SystemCheckMockLocationPlugin</name>
+    <description>PDD System Check Mock Location Plugin</description>
+    
     <js-module name="SystemCheckMockLocationPlugin" src="www/SystemCheckMockLocationPlugin.js">
         <clobbers target="cordova.plugins.SystemCheckMockLocationPlugin" />
     </js-module>
+    
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="SystemCheckMockLocationPlugin">
                 <param name="android-package" value="cn.one.pdd.plugin.SystemCheckMockLocationPlugin" />
             </feature>
         </config-file>
+        
         <source-file src="src/android/SystemCheckMockLocationPlugin.java" target-dir="src/cn/one/pdd/plugin/" />
+        
         <config-file parent="/*" target="AndroidManifest.xml">
-
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
         </config-file>
-        <!-- 其他配置 -->
-        <application android:requestLegacyExternalStorage="true">
-        </application>
+        
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <application android:requestLegacyExternalStorage="true">
+            </application>
+        </config-file>
     </platform>
-    <!-- iOS平台实现 -->
+    
     <platform name="ios">
         <source-file src="src/ios/IOSUUID.m" target-dir="Classes"/>
         <header-file src="src/ios/IOSUUID.h" target-dir="Classes"/>
-        <!-- 新增feature映射 -->
-        <feature name="IOSUUID">
+        
+        <feature name="SystemCheckMockLocationPlugin">
             <param name="ios-package" value="IOSUUID" />
         </feature>
     </platform>
