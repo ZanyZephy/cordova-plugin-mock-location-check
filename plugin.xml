@@ -1,39 +1,47 @@
-<?xml version='1.0' encoding='utf-8' ?>
-<plugin id="cn.one.pdd.plugin" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cn.one.pdd.plugin" version="0.0.2"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
     <name>SystemCheckMockLocationPlugin</name>
     <description>PDD System Check Mock Location Plugin</description>
-    
+
+    <!-- JS 模块 -->
     <js-module name="SystemCheckMockLocationPlugin" src="www/SystemCheckMockLocationPlugin.js">
         <clobbers target="cordova.plugins.SystemCheckMockLocationPlugin" />
     </js-module>
-    
+
+    <!-- Android 平台配置 -->
     <platform name="android">
+        <!-- 在 config.xml 里注册插件 -->
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="SystemCheckMockLocationPlugin">
                 <param name="android-package" value="cn.one.pdd.plugin.SystemCheckMockLocationPlugin" />
             </feature>
         </config-file>
-        
+
+        <!-- Java 源码 -->
         <source-file src="src/android/SystemCheckMockLocationPlugin.java" target-dir="src/cn/one/pdd/plugin/" />
-        
+
+        <!-- 权限声明 -->
         <config-file parent="/*" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
+            <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
         </config-file>
-        
-        <config-file parent="/*" target="AndroidManifest.xml">
-            <application android:requestLegacyExternalStorage="true">
-            </application>
-        </config-file>
+
+        <!-- 修改已有 application 节点 -->
+        <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+            <application android:requestLegacyExternalStorage="true" />
+        </edit-config>
     </platform>
-    
+
+    <!-- iOS 平台配置 -->
     <platform name="ios">
         <source-file src="src/ios/IOSUUID.m" target-dir="Classes"/>
         <header-file src="src/ios/IOSUUID.h" target-dir="Classes"/>
-        
+
         <feature name="SystemCheckMockLocationPlugin">
             <param name="ios-package" value="IOSUUID" />
         </feature>
